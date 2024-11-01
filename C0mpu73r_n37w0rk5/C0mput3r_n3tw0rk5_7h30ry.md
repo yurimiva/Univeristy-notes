@@ -157,7 +157,6 @@ In this section we see the guided media:
    We'll have many different rays bouncing around at different angles, each one with a different mode; so a fiber having this property is called a **multimode** **fiber**.
    However, if the fiber’s diameter is reduced to a few wavelengths of light, the fiber acts like a wave guide and the light can propagate only in a straight line, yielding a **single**-**mode** **fiber**. Single-mode fibers are more expensive but are widely used for longer distances.
    How are fiber cables made? At the center is the **glass** **core** through which the light propagates. In multimode fiber the core is typically 50 microns in diameter, while in single-mode fiber the core is 8 to 10 microns. Then the core is surrounded by a **glass** **cladding** with a lower index of refraction than the core, to keep all the light in the core. Next comes a **thin** **plastic** **jacket** to protect the cladding. Fibers are typically grouped in bundles, protected by an outer **sheath**.
-   ![[Pasted image 20241027161534.png]]
    (I think I said enough about fiber optics, I'm dying here grandpa)
 
 -----
@@ -200,8 +199,7 @@ Two approaches are commonly used:
 1. **Feedback-based flow control** → the receiver sends back information to the sender giving it permission to send more data, or at least telling the sender how the receiver is doing. They are seen at both the link and higher layers;
 2. **Rate-based flow control** → the protocol has a built-in mechanism that limits the rate at which senders may transmit data, without using feedback from the receiver. They are seen  as a part of the transport layer.
 
-The physical layer process and some of the data link layer process run on dedicate hardware called a **NIC** (**Network Interface Card**). The rest of the link layer process and the network layer process run on the main CPU as part of the operating system, with the software for the link layer process often taking the form of a device driver:
-![[Pasted image 20241028114044.png]]
+The physical layer process and some of the data link layer process run on dedicate hardware called a **NIC** (**Network Interface Card**). The rest of the link layer process and the network layer process run on the main CPU as part of the operating system, with the software for the link layer process often taking the form of a device driver.
 
 Under no circumstances is a frame header ever given to a network layer: we keep the network and data link protocols completely separate, but as long as the network layer knows nothing about the data link protocol or the frame format, these things can be changed without requiring changes to the network layer’s software. 
 Providing a rigid interface between the network and data link layers greatly simplifies the design task because communication protocols in different layers can evolve independently.
