@@ -1,5 +1,7 @@
 I will study it from my brother in Christ Tanenbaum because Halsall love to make basic mistakes when it comes to writing a book.
 
+I will solely write about the parts that the professor wants to know, with some added stuff because he isn't clear in what he wants :,)
+
 # CHAPTER 1: Introduction
 This is pretty much an introduction, so I'll write only the important stuff.
 
@@ -9,7 +11,8 @@ Note → a distributed system is a software system built on the network. So, the
 There are many reasons why we use computer networks:
 1) Businesses use them to share resources through the **client-server model**, to communicate through emails and calls and other reasons;
 2) We use them at home since we can connect to so much stuff through the Internet in the WWW, for **peer-to-peer** communication, like instant messaging and social network applications.
-There are other reasons but I don't want to explore them rn.
+   
+There are other reasons but I don't want to explore them right now. If you want, you can read the book that I pushed with the notes of the course.
 
 ## Network Hardware
 There are two types of transmission technology that are widespread:
@@ -34,7 +37,7 @@ Between adjacent layers we have an **interface**, that defines which primitive o
 A set of layers and protocols is called a **network architecture**, and its specifications must contain enough information to build or write each layer so that it follows the correct protocol. The implementation and specification of the layers is not part of the network architecture. A list of protocols used by a certain system is called **protocol stack**. 
 
 We need to make our network reliable, but:
-1) There is a chance that some of the bits received will be damaged. We can use **error detection**, which will transmit  the message again until it is received correctly, or **error correction** where we recover the correct message from the possibly incorrect bits. They are used in lower layers to protect packets sent over, and in higher layers to check that the right contents were received;
+1) There is a chance that some of the bits received will be damaged. We use **error detection**, which will transmit  the message again until it is received correctly, or **error correction** where we recover the correct message from the possibly incorrect bits. They are used in lower layers to protect packets sent over, and in higher layers to check that the right contents were received;
 2) We need to find a working path through a network. Often there are multiple paths between a source and destination, and in a large network, there may be some links or routers that are broken. We do this decision with **routing**;
 3) Over time, networks grow larger and new designs emerge that need to be connected to the existing network with the help of **protocol layering**. Every layer needs a mechanism for identifying the senders and receivers involved in that particular message, by **addressing** or **naming** them, for the lower and higher layers respectively;
 4) An aspect of growth is that different network technologies often have different limitations. This leads to mechanisms for disassembling, transmitting, and then reassembling messages, known as **internetworking**;
@@ -51,12 +54,12 @@ In some cases when a connection is established, the sender, receiver, and subnet
 A **circuit** is another name for a connection with associated resources, like **fixed bandwidth**.
 
 **Connectionless network service**, even though the professor called it **packet switch**, is modeled after the postal system. Each message carries the full destination address and each one is routed through the intermediate nodes inside the system independent of all the subsequent messages. 
+
 A **packet** is a message at the network layer. While the message travels through intermediate nodes, it can be stored and sent or it can be sent by the node, which can be a switch or a router, before being completely received. These methods are called respectively **store-and-forward switching** and **cut-through switching**.
 
 Each kind of service can further be characterized by its reliability:
 1) A typical situation where a reliable connection-oriented service is appropriate is **file transfer**. 
-   The owner of the file wants to be sure that all the bits arrive correctly and in the same order they were sent. Reliable connection-oriented service has two minor variations: **message sequences**, where message boundaries are preserved, and **byte streams**, simply a stream of bytes. 
-   For some applications though, the transit delays introduced by acknowledgements are unacceptable. One such application is digitized voice traffic for **voice over IP**;
+   The owner of the file wants to be sure that all the bits arrive correctly and in the same order they were sent. Reliable connection-oriented service has two minor variations: **message sequences**, where message boundaries are preserved, and **byte streams**, simply a stream of bytes. For some applications though, the transit delays introduced by acknowledgements are unacceptable. One such application is digitized voice traffic for **voice over IP**;
 2) Not all applications require connections. In fact, unreliable (meaning not acknowledged) connectionless service is often called **datagram** service:  all that is needed is a way to send a single message that has a high probability of arrival, but no guarantee.  
    What we look for is the convenience of not having to establish a connection to send one message is desired. 
    An **acknowledge datagram** service provides the reliability, and similar to this is the **request-reply** service, commonly used in client-server communication.
@@ -143,7 +146,7 @@ The physical layer is the foundation on which the network is built. The properti
 
 The **bandwidth**, described as the width of the band of frequencies that are passed, is a physical property of the transmission medium that depends on the construction, thickness, and length of a wire or fiber. Filters are often used to further limit the bandwidth of a signal, which let more signals share a given region of spectrum, improving the overall efficiency of the system. 
 Signals that run from 0 up to a maximum frequency are called **baseband** signals. Signals that are shifted to occupy a higher range of frequencies, as is the case for all wireless transmissions, are called **passband** signals.
-At least, this is the description of an **analog** **bandwidth**, while for us the **digital** **bandwidth** is the maximum **data** **rate**, basically how many bits are sent per second. **BUT**,  that data rate is the end result of using the analog bandwidth of a physical channel for digital transmission, so the two are related.
+At least, this is the description of an **analog** **bandwidth**, while for us the **digital** **bandwidth** is the maximum **data** **rate**, basically how many bits are sent per second. **BUT**, that data rate is the end result of using the analog bandwidth of a physical channel for digital transmission, so the two are related.
 
 In the early 20th century it was already derived an equation expressing the maximum data rate for a finite-bandwidth *noiseless channel*, which is:
 $$maximum \space data \space rate = 2B \log_2 V (bits/sec)$$
@@ -160,20 +163,26 @@ The purpose of the physical layer is to transport bits from one machine to anoth
 The media are grouped into **guided media**, such as copper wire and fiber optics, and **unguided media**,  like terrestrial wireless, satellite and lasers through the air.
 
 In this section we see the guided media:
+
 1. **Magnetic media** → One of the most common ways to transport data from one computer to another is to write them onto magnetic tape or removable media (e.g., recordable DVDs), physically transport the tape or disks to the destination machine, and read them back in again. It is often more cost effective, especially for applications in which high bandwidth or cost per bit transported is the key factor;
+   
 2. **Twisted pairs** → Consists of two insulated copper wires, typically about 1 mm thick. The wires are twisted together in a helical form. A signal is usually carried as the difference in voltage between the two wires in the pair, thus providing better immunity to external noise because the noise tends to affect both wires the same, leaving the differential unchanged.
    Twisted pairs can be used for transmitting either analog or digital information, and due to their adequate performance and low cost, twisted pairs are widely used and are likely to remain so for years to come.
    Twisted-pair cabling comes in different varieties, and different LAN standards may use the twisted pairs differently: links that can be used in both directions at the same time, are called **full**-**duplex** links. In contrast, links that can be used in either direction, but only one way at a time are called **half**-**duplex** links. A third category consists of links that allow traffic in only one direction, called **simplex** links;
+   
 3. **Coaxial cable** → It has better shielding and greater bandwidth than unshielded twisted pairs, so it can span longer distances at higher speeds. A coaxial cable consists of a stiff copper wire as the core, surrounded by an insulating material. The insulator is encased by a cylindrical conductor, often as a closely woven braided mesh. The outer conductor is covered in a protective plastic sheath. The construction and shielding of the coaxial cable give it a good combination of high bandwidth and excellent noise immunity. The bandwidth possible depends on the cable quality and length;
+   
 4. **Power lines** → Deliver electrical power to houses, and electrical wiring within houses distributes the power to electrical outlets.
    Power lines have been used by electricity companies for low-rate communication, but in recent years there has been renewed interest in high-rate communication over these lines, both inside the home as a LAN and outside the home for broadband Internet access;
+   
 5. **Fiber optics** → Is used for long-haul transmission in network backbones, high speed LANs and high-speed Internet access. An optical transmission system has **three** **key** **components**: the **light** **source**, the **transmission** **medium**, an ultra-thin fiber of glass and the **detector**, which generates an electrical pulse when light falls on it. 
    So if we attach a light source to one end and a detector to the other, we have a **unidirectional** data transmission system that accepts an electrical signal, converts and transmits it by light pulses, and then is reconverted to an electrical signal at the receiving end.
+   
    This transmission system would leak light and be useless were it not for an interesting principle of physics: when a light ray passes from one medium to another the ray is **refracted** (bent) at the boundary, and the amount of refraction depends on the **indices of refraction** of the two media. This is why for angles of incidence above a certain critical value, the light is refracted back internally and can be propagated for kilometers with virtually no loss.
    We'll have many different rays bouncing around at different angles, each one with a different mode; so a fiber having this property is called a **multimode** **fiber**.
    However, if the fiber’s diameter is reduced to a few wavelengths of light, the fiber acts like a wave guide and the light can propagate only in a straight line, yielding a **single**-**mode** **fiber**. Single-mode fibers are more expensive but are widely used for longer distances.
-   How are fiber cables made? At the center is the **glass** **core** through which the light propagates. In multimode fiber the core is typically 50 microns in diameter, while in single-mode fiber the core is 8 to 10 microns. Then the core is surrounded by a **glass** **cladding** with a lower index of refraction than the core, to keep all the light in the core. Next comes a **thin** **plastic** **jacket** to protect the cladding. Fibers are typically grouped in bundles, protected by an outer **sheath**.
-   (I think I said enough about fiber optics, I'm dying here grandpa)
+   
+   How are fiber cables made? At the center is the **glass** **core** through which the light propagates. In multimode fiber the core is typically 50 microns in diameter, while in single-mode fiber the core is 8 to 10 microns. Then the core is surrounded by a **glass** **cladding** with a lower index of refraction than the core, to keep all the light in the core. Next comes a **thin** **plastic** **jacket** to protect the cladding. Fibers are typically grouped in bundles, protected by an outer **sheath**. (I think I said enough about fiber optics, I'm dying here grandpa)
 
 -----
 # CHAPTER 3: The data link layer
@@ -187,22 +196,37 @@ You think that studying this layer would be easy like the physical layer? Hah, t
 To accomplish these goals, the data link layer takes the packets it gets from the network layer and encapsulates them into frames for transmission. Each frame contains a **frame** **header**, a **payload** **field** for holding the packet, and a **frame** **trailer**. 
 
 The function of the data link layer is to provide services to the network layer, and the principal service is transferring data from the network layer on the source machine to the network layer on the destination machine. The services offered vary from protocol to protocol, and we can have three reasonable possibilities for our service:
-1) **Unacknowledged connectionless service** → consists of having the source machine send independent frames to the destination machine without having the destination machine acknowledge them. A good example is the **Ethernet**, and this class is appropriate when the error rate is very low, and also appropriate for real-time traffic;
+1) **Unacknowledged connectionless service** → consists of having the source machine send independent frames to the destination machine without having the destination machine acknowledge them. 
+   
+   A good example is the **Ethernet**, and this class is appropriate when the error rate is very low, and also appropriate for real-time traffic;
+   
 2) **Acknowledged connectionless service** → there are still no logical connections used, but each frame sent is individually acknowledged, so the sender knows whether a frame has arrived correctly, and do nothing, or been lost, and can be sent again. This service is useful for unreliable channels, like wireless systems. **802.11** (**WiFi**) is a good example.
-   The trouble with this strategy is that it can be inefficient, and this is why link layers have a strict maximum frame length imposed by the hardware, and known propagation delays.  ;
+   
+   The trouble with this strategy is that it can be inefficient, and this is why link layers have a strict maximum frame length imposed by the hardware, and known propagation delays;
+   
 3) **Acknowledged connection-oriented service** → the source and destination machines establish a connection before any data are transferred. Each frame sent over the connection is numbered, and the data link layer guarantees that each frame sent is indeed received. Furthermore, it guarantees that each frame is received exactly once and that all frames are received in the right order. It is the equivalent of a reliable bit stream. 
+   
    It is appropriate over long, unreliable links such as a satellite channel or a long-distance telephone circuit. 
 
 To provide service to the network layer, the data link layer must use the service provided to it by the physical layer, but if the channel is noisy there will be errors, and the data link layer has to take care of it. 
 The usual approach is for the data link layer to break up the bit stream into discrete frames, compute a short token called a **checksum** for each frame, and include the checksum in the frame when it is transmitted. When a frame arrives at the destination, the checksum is recomputed. If the newly computed checksum is different from the one contained in the frame, the data link layer knows that an error has occurred and takes steps to deal with it.
 
 Breaking up the bit stream into frames is more difficult than it at first appears: a good design must make it easy for a receiver to find the start of new frames while using little of the channel bandwidth. We will look at four methods:
-1. **Byte count** → uses a field in the header to specify the number of bytes in the frame. When the data link layer at the destination sees the byte count, it knows how many bytes follow and hence where the end of the frame is. The trouble with this algorithm is that the count can be garbled by a transmission error and will be unable to locate the end of the current frame and the start of the new frame. Even worse, this problem can hardly be solved by retransmission, so it is rarely used by itself;
+
+1. **Byte count** → uses a field in the header to specify the number of bytes in the frame. When the data link layer at the destination sees the byte count, it knows how many bytes follow and hence where the end of the frame is. 
+   
+   The trouble with this algorithm is that the count can be garbled by a transmission error and will be unable to locate the end of the current frame and the start of the new frame. Even worse, this problem can hardly be solved by retransmission, so it is rarely used by itself;
+   
 2. **Flag bytes with byte stuffing** → gets around the problem of the byte count by having each frame start and end with special bytes. Often the same byte, called a **flag** **byte**, is used as both the starting and ending delimiter, so two consecutive flag bytes indicate the end of one frame and the start of the next. However, there is a problem we have to solve: it may happen that the sequence of the flag byte occurs in the data, interfering with the framing.
+   
    We solve the problem above by having the sender’s data link layer insert a special **escape byte** (**ESC**) just before each accidental flag byte in the data. Thus, a framing flag byte can be distinguished from one in the data by the absence or presence of an escape byte before it, and the data link layer on the receiving end removes the escape bytes before giving the data to the network layer. This method is called **byte stuffing**. 
+   
    An escape byte can be stuffed with another escape byte, since the same problem with an accidental flag byte can happen. We have a problem: it is tied to the use of 8-bit bytes;
+   
 3. **Flag bits with bit stuffing** → gets around the disadvantage of byte stuffing by framing at the bit level, so frames can contain an arbitrary number of bits made up of units of any size. The **bit stuffing** is analogous to byte stuffing and it also ensures a minimum density of transitions that help the physical layer maintain synchronization. **USB** (**Universal Serial Bus**) uses bit stuffing for this reason. 
-   With both bit and byte stuffing, a side effect is that the length of a frame now depends on the contents of the data it carries: if there are no flag bytes in the data, 100 bytes might be carried in a frame of roughly 100 bytes. If, however, the data consists solely of flag bytes, each flag byte will be escaped and the frame will become roughly 200 bytes long.;
+   
+   With both bit and byte stuffing, a side effect is that the length of a frame now depends on the contents of the data it carries: if there are no flag bytes in the data, 100 bytes might be carried in a frame of roughly 100 bytes. If, however, the data consists solely of flag bytes, each flag byte will be escaped and the frame will become roughly 200 bytes long;
+   
 4. **Physical layer coding violations** → we use some reserved signals to indicate the start and end of frames. In effect, we are using ‘‘coding violations’’ to delimit frames, but because they are reserved signals, it is easy to find the start and end of frames and there is no need to stuff the data. This method would seem like the best, but many data links protocol use a mix of this and the last 3.
 
 Solved the problem of the markings of the frame, we need to make sure all frames are eventually delivered to the network layer at the destination and in the proper order.
@@ -214,12 +238,14 @@ When frames may be transmitted multiple times there is a danger that the receive
 
 Another important design issue that occurs in the data link layer is a **bottleneck**: a sender that systematically wants to transmit frames faster than the receiver can accept them. This situation can occur when the sender is running on a fast, powerful computer and the receiver is running on a slow, low-end machine.
 Two approaches are commonly used:
+
 1. **Feedback-based flow control** → the receiver sends back information to the sender giving it permission to send more data, or at least telling the sender how the receiver is doing. They are seen at both the link and higher layers;
 2. **Rate-based flow control** → the protocol has a built-in mechanism that limits the rate at which senders may transmit data, without using feedback from the receiver. They are seen  as a part of the transport layer.
 
 The physical layer process and some of the data link layer process run on dedicate hardware called a **NIC** (**Network Interface Card**). The rest of the link layer process and the network layer process run on the main CPU as part of the operating system, with the software for the link layer process often taking the form of a device driver.
 
 Under no circumstances is a frame header ever given to a network layer: we keep the network and data link protocols completely separate, and as long as the network layer knows nothing about the data link protocol or the frame format, they can be changed without requiring changes to the network layer’s software. 
+
 Providing a rigid interface between the network and data link layers greatly simplifies the design task because communication protocols in different layers can evolve independently.
 In the header we have 3 fields, while the field *info* indicates the actual data:
 1) *kind* → tells whether there are any data in the frame, because some of the protocols distinguish frames containing only control information from those containing data as well;
@@ -230,28 +256,99 @@ It is important to understand the relationship between a packet and a frame: the
 In this manner, the network layer can act as though machines can exchange packets directly.
 
 We have 3 types of simplex protocols when we handle frames:
+
 1. **Utopian simplex protocol** → is a protocol that is as simple as it can be because it does not worry about the possibility of anything going wrong. Data are transmitted in one direction only and both the transmitting and receiving network layers are always ready. 
+   
    Processing time can be ignored, infinite buffer space is available, and best of all, the communication channel between the data link layers never damages or loses frames. This thoroughly unrealistic protocol will be nicknamed "Utopia".
+   
    Only the *info* field of the frame is used by this protocol, because the other fields have to do with error and flow control and there are no errors or flow control restrictions here;
+   
 2. **Simplex stop-and-wait protocol for an error-free channel** → is a protocol preventing the sender from flooding the receiver with frames faster than the latter is able to process them. This situation can easily happen in practice so being able to prevent it is of great importance, but the communication channel is still assumed to be error free and the data traffic is still simplex.
+   
    One solution is to build the receiver to be powerful enough. However, this is a worst-case solution since it requires dedicated hardware and can be wasteful of resources if the utilization of the link is mostly low. 
+   
    A more general solution to this problem is to have the receiver provide feedback to the sender. After having passed a packet to its network layer, the receiver sends a little dummy frame back to the sender which, in effect, gives the sender permission to transmit the next frame. This delay is a simple example of a flow control protocol, and these protocols are called **stop-and-wait**.
-   Although data traffic in this example is simplex, frames do travel in both directions, and so, the communication channel between the two data link layers needs to be capable of bidirectional information transfer. However, this protocol entails a strict alternation of flow, though a half-duplex physical channel would suffice here;
+   
+   Although data traffic in this example is simplex, frames do travel in both directions, and so, the communication channel between the two data link layers needs to be capable of bidirectional information transfer. 
+   However, this protocol entails a strict alternation of flow, though a half-duplex physical channel would suffice here;
 3. **Simplex stop-and-wait protocol for a noisy channel** → the normal situation of a communication channel that makes errors: frames may be either damaged or lost completely. However, we assume that if a frame is damaged in transit, the receiver hardware will detect this when it computes the checksum. 
+   
    If the frame is damaged in such a way that the checksum is nevertheless correct—an unlikely occurrence—this protocol (and all other protocols) can fail.
    At first glance it might seem that a variation of protocol 2 would work by adding a timer, but the network layer on the receiver has no way of knowing that a packet has been lost or duplicated, so the data link layer must guarantee that no combination of transmission errors can cause a duplicate packet to be delivered to a network layer. 
+   
    The receiver needs to distinguish a frame that it is seeing for the first time from a retransmission, and the way is to have the sender put a sequence number in the header of each frame it sends. Then the receiver checks the sequence number of each arriving frame to see if it is a new frame or a duplicate to be discarded. It must carry sequence numbers that are large enough for the protocol to work correctly.
+   
    Protocols in which the sender waits for a positive acknowledgement before advancing to the next data item are often called **ARQ** (**Automatic Repeat reQuest**) or **PAR** (**Positive** **Acknowledgement with Retransmission**).
+   
    After transmitting a frame, the sender starts the timer running. If it was already running, it will be reset to allow another full timer interval. The interval should be chosen to allow enough time for the frame to get to the receiver, for the receiver to process it in the worst case, and for the acknowledgement frame to propagate back to the sender. If the timeout interval is set too short, the sender will transmit unnecessary frames. While these extra frames will not affect the correctness of the protocol, they will hurt performance.
 
 In most practical situations, there is a need to transmit data not in simplex, but in **duplex**. One way to achieve full-duplex is to run two instances of one of the previous protocols, each using a separate link for simplex data traffic (in different directions). Each link is then comprised of a ‘‘forward’’ channel (for data) and a ‘‘reverse’’ channel (for acknowledgements). 
 In both cases the capacity of the reverse channel is almost entirely wasted, so a better idea is to use the same link for data in both directions and by looking at the *kind* field in the header of an incoming frame, the receiver can tell whether the frame is data or an acknowledgement.
-Although interleaving data and control frames on the same link is a big improvement over having two separate physical links, yet another improvement is possible: when a data frame arrives, instead of immediately sending a separate control frame, the receiver restrains itself and waits until its network layer passes the next packet.  The acknowledgement is then attached to the outgoing data frame (using the *ack* field in the frame header). 
+
+Although interleaving data and control frames on the same link is a big improvement over having two separate physical links, yet another improvement is possible: when a data frame arrives, instead of immediately sending a separate control frame, the receiver restrains itself and waits until its network layer passes the next packet.  The acknowledgement is then attached to the outgoing data frame by using the *ack* field in the frame header. 
+
 In effect, the acknowledgement gets a free ride on the next outgoing data frame. The technique of temporarily delaying outgoing acknowledgements so that they can be hooked onto the next outgoing data frame is known as **piggybacking**. 
 There is a huge disadvantage: if the data link layer waits longer than the sender’s timeout period, the frame will be retransmitted. So if a new packet arrives quickly, the acknowledgement is piggybacked onto it. Otherwise, if no new packet has arrived by the end of this time period, the data link layer just sends a separate acknowledgement frame.
 
-The next protocols are bidirectional protocols that belong to a class called **sliding** **window** protocols: their essence is that at any instant of time, the sender maintains a set of sequence numbers corresponding to frames it is permitted to send. These frames fall within the **sending** **window**, while the receiver maintains a **receiving** **window** corresponding to the set of frames it is permitted to accept. The sender’s window and the receiver’s window don't need to have the same lower and upper limits or even have the same size. In some protocols they are fixed in size, but in others they can grow or shrink over the course of time as frames are sent and received. 
+The next protocols are bidirectional protocols that belong to a class called **sliding** **window** protocols: their essence is that at any instant of time, the sender maintains a set of sequence numbers corresponding to frames it is permitted to send. These frames fall within the **sending** **window**, while the receiver maintains a **receiving** **window** corresponding to the set of frames it is permitted to accept. The sender’s window and the receiver’s window don't need to have the same lower and upper limits or even have the same size. In some protocols they are fixed in size, but in others they can grow or shrink over the course of time as frames are sent and received.
+
 The sequence numbers within the sender’s window represent frames that have been sent or can be sent but are as yet not acknowledged. Whenever a new packet arrives from the network layer, it is given the next highest sequence number, and the upper edge of the window is advanced by one. When an acknowledgement comes in, the lower edge is advanced by one.
 
 Until now we have made the tacit assumption that the transmission time required for a frame to arrive at the receiver plus the transmission time for the acknowledgement to come back is negligible. Sometimes this assumption is clearly false, and the solution lies in allowing the sender to transmit up to *n* frames before blocking, instead of just 1. With a large enough choice of *n* the sender will be able to continuously transmit frames since the acknowledgements will arrive for previous frames before the window becomes full, preventing the sender from blocking.
-To find an appropriate value for *n* we need to know how many frames can fit inside the channel as they propagate from sender to receiver. This capacity is determined by the bandwidth in bits/sec multiplied by the one-way transit time, or the bandwidth-delay product of the link
+
+To find an appropriate value for *n* we need to know how many frames can fit inside the channel as they propagate from sender to receiver. This capacity is determined by the **bandwidth**(**B**) in bits/sec multiplied by the **one-way transit time**(**D**), also known as the **bandwidth-delay product** of the link. This quantity can be divided by the number of bits in a frame as to express it as a **number of frames**. 
+So our $n$ should be set at the maximum $2BD +1$, since the data link layer will keep on sending frames until the ACK for the first frame arrives from the receiver, and the $+1$ is because an ACK will not be sent until after a complete frame is received. So we finally have found a proper upper bound where:
+$$ link \ utilization \leq \frac{n}{1+2BD}$$
+The equation shows the need for having a large window *n* whenever the bandwidth-delay product is large. If the delay is high, the sender will rapidly exhaust its window even for a moderate bandwidth. If the bandwidth is high, even for a moderate delay the sender will exhaust its window quickly unless it has a large window. We can call this **pipelining**, but pipelining frames over an unreliable communication channel raises some serious issues, those typical of an unreliable communication channel, yay.
+
+One option, called **go-back-N**, is for the receiver simply to discard all subsequent frames, sending no acknowledgements for the discarded frames. This strategy corresponds to a receive window of size 1.  The data link layer refuses to accept any frame except the next one it must give to the network layer. If the sender’s window fills up before the timer runs out, the pipeline will begin to empty. Eventually, the sender will time out and retransmit all unacknowledged frames in order, starting with the damaged or lost one.  This approach can waste a lot of bandwidth if the error rate is high.
+
+The other general strategy is called **selective repeat**. When it is used, a bad frame that is received is discarded, but any good frames received after it are accepted and buffered, so when the sender
+times out, only the oldest unacknowledged frame is retransmitted. If that frame arrives correctly, the receiver can deliver to the network layer, in sequence, all the frames it has buffered. 
+Selective repeat corresponds to a receiver window larger than 1. This approach can require large amounts of data link layer memory if the window is large.
+Selective repeat is often combined with having the receiver send a **NAK** when it detects an error, and since they stimulate retransmission before the corresponding timer expires, there is an improvement in performance.
+
+These two alternative approaches are trade-offs between efficient use of bandwidth and data link layer buffer space. Depending on which resource is scarcer, one or the other can be used.
+
+----
+# CHAPTER 4: The medium access control sublayer
+
+We already studied **Pont-to-point** connections, and now we'll study **broadcast channels** and their protocols.
+
+In any broadcast network, the key issue is how to determine who gets to use the channel when there is competition for it. When only a single channel is available, it is much harder to determine who should go next; but at least many protocols for solving the problem are known.
+Broadcast channels are sometimes referred to as **multiaccess channels** or **random access channels**.
+The protocols used to determine who goes next on a multiaccess channel belong to a sublayer of the data link layer called the **MAC** (**Medium Access Control**) sublayer. The **MAC** sublayer is especially important in LANs, particularly wireless ones because wireless is naturally a broadcast channel. WANs, in contrast, use point-to-point links, except for satellite networks. 
+
+**How to allocate a single broadcast channel among competing users**? We can use two schemes:
+
+**Static allocation schemes** → these have huge shortcomings, and so are rarely used. The traditional way is more or less like this: if there are N users, the bandwidth is divided into N equal-sized portions, with each user being assigned one portion. 
+Since each user has a private frequency band, there is now no interference among users. When there is only a small and constant number of users, and each has a steady stream or a heavy load of traffic, this division is a simple and efficient allocation mechanism. A wireless example is FM radio stations.
+However, if the number of users is large and varying or the traffic is bursty (what does this adjective mean, please enlighten me) is when a huge mess and waste happen.
+   
+**Dynamic schemes** → We had the allocation model, and it was solved thanks to 5 key points with which we'll have to work, and possibly find better solutions: 
+1. **Independent traffic** → the model has N **independent stations**, each with a program or user that generates frames for transmission. Once a frame has been generated, the station is blocked and does nothing until the frame has been successfully transmitted;
+2. **Single channel** → a single channel is available for all communication: all stations can transmit on it and all can receive from it. The stations are assumed to be equally capable, though protocols may assign them different roles;
+3. **Observable collisions** → if two frames are transmitted simultaneously, they overlap in time and the resulting signal is garbled, causing a **collision**, detected by all stations. A collided frame must be transmitted again later;
+4. **Continuous or slotted time** → time may be assumed **continuous**, in which case frame transmission can begin at any instant. Alternatively, time may be slotted or divided into discrete intervals called **slots**;
+5. **Carrier sense or no carrier sense** → with the carrier sense assumption, stations can tell if the channel is in use before trying to use it and no station will attempt to use the channel while it is sensed as busy. If there is no carrier sense, it will be the opposite, and only later can they determine whether the transmission was successful.
+
+The professor only talked about **CSMA** (**Carrier Sense Multiple Access**) protocols, so I'll write only those. Obviously it is a **carrier sense protocol**, but there are many different versions:
+
+**1-persistent CSMA** → the protocol is called 1-persistent because the station transmits with a probability of 1 when it finds the channel idle. You'd expect that this scheme avoids collisions except for the rare case of simultaneous sends, but it in fact it does not. The propagation delay has an important effect on collisions. 
+There is a chance that just after a station begins sending, another station will become ready to send and sense the channel. If the first station’s signal has not yet reached the second one, the latter will sense an idle channel and will also begin sending, resulting in a collision. 
+This chance depends on the number of frames that fit on the channel, or the **bandwidth-delay product** of the channel. If only a tiny fraction of a frame fits on the channel, which is the case in most LANs since the propagation delay is small, the chance of a collision happening is small. The larger the bandwidth-delay product, the more important this effect becomes, and the worse the performance of the protocol.
+
+**Non-persistent CSMA** → In this protocol, a conscious attempt is made to be less greedy than in the previous one: if the channel is already in use, the station does not continually sense it for the purpose of seizing it immediately upon detecting the end of the previous transmission. Instead, it waits a random period of time and then repeats the algorithm. Consequently, this algorithm leads to better channel utilization but longer delays than 1-persistent CSMA.
+
+**p-persistent CSMA** →  it applies to slotted channels and works as follows: when a station becomes ready to send, it senses the channel. If it is idle, it transmits with a probability $p$. With a probability $q = 1 − p$, it defers until the next slot. If that slot is also idle, it either transmits or defers again, with probabilities $p$ and $q$ respectively. 
+This process is repeated until either the frame has been transmitted or another station has begun transmitting. In the latter case, the unlucky station waits a random time and starts again. If the station initially senses that the channel is busy, it waits until the next slot and applies the above algorithm. *Note*: IEEE 802.11 uses a refinement of p-persistent CSMA.
+
+There is an improvement over the CSMA: **CSMA/CD**, CSMA with collision detection. CSMA/CD quickly detects the collision and abruptly stop transmitting, saving time and bandwidth.
+This protocol is the basis of the classic **Ethernet LAN**. 
+It is important to realize that collision detection is an **analog(physical) process**: the station’s hardware must listen to the channel while it is transmitting, and if the signal it reads back is different from the signal it is putting out, it knows that a collision is occurring. 
+The implications are that a received signal must not be tiny compared to the transmitted signal, difficult for wireless connections, and that the modulation, or better yet voltage, must be chosen to allow collisions to be detected.
+CSMA/CD, as well as many other LAN protocols, uses this conceptual model: a station has finished transmitting its frame, and now any other station having a frame to send may now attempt to do so. If two or more stations decide to transmit simultaneously, there will be a collision. If a station detects a collision, it aborts its transmission, waits a random period of time,
+and then tries again.
+There is an important problem: **How long will it take to detect the collision?** It will depend on the worst case scenario it takes for the propagation signal to reach the station that sent the frame.
+
+### I need to find a good source for Manchester Encoding... I hate the way the professor explains I swear
