@@ -1,6 +1,6 @@
 I will study it from my brother in Christ Tanenbaum because Halsall love to make basic mistakes when it comes to writing a book.
 
-I will solely write about the parts that the professor wants to know, with some added stuff because he isn't clear in what he wants :,)
+I will solely write about the parts that the professor wants to know, with some added stuff because he isn't clear in what he wants... I dislike him frfr.
 
 # CHAPTER 1: Introduction
 This is pretty much an introduction, so I'll write only the important stuff.
@@ -271,7 +271,8 @@ We have 3 types of simplex protocols when we handle frames:
    
    Although data traffic in this example is simplex, frames do travel in both directions, and so, the communication channel between the two data link layers needs to be capable of bidirectional information transfer. 
    However, this protocol entails a strict alternation of flow, though a half-duplex physical channel would suffice here;
-3. **Simplex stop-and-wait protocol for a noisy channel** → the normal situation of a communication channel that makes errors: frames may be either damaged or lost completely. However, we assume that if a frame is damaged in transit, the receiver hardware will detect this when it computes the checksum. 
+   
+1. **Simplex stop-and-wait protocol for a noisy channel** → the normal situation of a communication channel that makes errors: frames may be either damaged or lost completely. However, we assume that if a frame is damaged in transit, the receiver hardware will detect this when it computes the checksum. 
    
    If the frame is damaged in such a way that the checksum is nevertheless correct—an unlikely occurrence—this protocol (and all other protocols) can fail.
    At first glance it might seem that a variation of protocol 2 would work by adding a timer, but the network layer on the receiver has no way of knowing that a packet has been lost or duplicated, so the data link layer must guarantee that no combination of transmission errors can cause a duplicate packet to be delivered to a network layer. 
@@ -352,3 +353,8 @@ and then tries again.
 There is an important problem: **How long will it take to detect the collision?** It will depend on the worst case scenario it takes for the propagation signal to reach the station that sent the frame.
 
 ### I need to find a good source for Manchester Encoding... I hate the way the professor explains I swear
+
+Now it is time to see how these principles apply to real systems. Many of the designs for personal, local, and metropolitan area networks have been standardized under the name of **IEEE 802**. A few have survived but many have not; and the most important survivors are **802.3** (**Ethernet**) and **802.11** (**wireless LAN**). 
+
+Two kinds of Ethernet exist: **classic Ethernet**, which solves the multiple access problem using the techniques seen in this chapter; and **switched Ethernet**, in which devices called **switches** are used to connect different computers. It is important to note that, while they are both referred to as Ethernet, they are quite different: classic Ethernet is the original form, while switched Ethernet is what Ethernet has transformed in **fast Ethernet**(100 Mbps), **gigabit Ethernet**(1000 Mbps), and **10 gigabit Ethernet**(10000 Mbps). In practice, only switched Ethernet is used nowadays.
+(Halsall is even out of production, why does the professor make us study from it? It's fucking obsolete dang)
